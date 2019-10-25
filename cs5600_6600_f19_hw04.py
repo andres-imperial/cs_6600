@@ -18,7 +18,13 @@ import os
 
 # Third-party libraries
 import numpy as np
-#import scipy as sp
+import tflearn
+from tflearn.data_utils import shuffle, to_categorical
+from tflearn.layers.core import input_data, dropout, fully_connected
+from tflearn.layers.conv import conv_2d, max_pool_2d
+from tflearn.layers.estimator import regression
+import tflearn.datasets.mnist as mnist
+from scipy import stats
 #import matplotlib.pyplot as plt
 import cv2
 
@@ -26,7 +32,7 @@ import pickle as cPickle
 import network2
 
 # Globals
-saveDir = "/home/aimperial/School/cs_6600/hw04_f19/pickle_nets/"
+savePath = "/home/aimperial/School/cs_6600/project_1/"
 train_d, valid_d, test_d = [],[],[]
 
 # save() function to save the trained network to a file
@@ -549,7 +555,7 @@ def loadBeeImage(imagePath):
 def loadBeeImages(directory):
     beeData = []
 
-    
+
     for subdir, dirs, files in os.walk(directory):
         for filename in files:
             if filename.endswith(".png"):
@@ -571,9 +577,9 @@ def loadBeeImages(directory):
 
     return beeData
 
-def getBeeTestingData():
+def getBeeTestingData(conv = False):
     #=========================================================
-    beeImages = loadBeeImages("/home/Ders/Documents/CS_5600/project_1/data/BEE1/bee_test")
+    beeImages = loadBeeImages("/home/aimperial/School/cs_6600/project_1/data/BEE1/bee_test")
     expected = np.ndarray(shape = (2, 1), dtype=int)
     expected[0] = [1]
     expected[1] = [0]
@@ -581,12 +587,16 @@ def getBeeTestingData():
     trainingList = []
     for index in range(len(beeImages)):
         flattenedBeeData = beeImages[index].flatten()
-        flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
+        if (conv):
+            flattenedBeeData = flattenedBeeData.reshape([32,32,1])
+            expected = [1,0]
+        else:
+            flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
         trainingList.append((flattenedBeeData, expected))
     #=========================================================
 
     #=========================================================
-    noBeeImages = loadBeeImages("/home/Ders/Documents/CS_5600/project_1/data/BEE1/no_bee_test/")
+    noBeeImages = loadBeeImages("/home/aimperial/School/cs_6600/project_1/data/BEE1/no_bee_test/")
     expected = np.ndarray(shape = (2, 1), dtype=int)
     expected[0] = [0]
     expected[1] = [1]
@@ -594,7 +604,11 @@ def getBeeTestingData():
     noTrainingList = []
     for index in range(len(noBeeImages)):
         flattenedBeeData = noBeeImages[index].flatten()
-        flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
+        if (conv):
+            flattenedBeeData = flattenedBeeData.reshape([32,32,1])
+            expected = [0,1]
+        else:
+            flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
         noTrainingList.append((flattenedBeeData, expected))
     #=========================================================
 
@@ -604,31 +618,39 @@ def getBeeTestingData():
     random.shuffle(trainingList)
 
     return trainingList
-    pass
-def getBeeTrainingData():
+
+def getBeeTrainingData(conv = False):
     #=========================================================
-    beeImages = loadBeeImages("/home/Ders/Documents/CS_5600/project_1/data/BEE1/bee_train/")
-    expected = np.ndarray(shape = (2, 1))
+    beeImages = loadBeeImages("/home/aimperial/School/cs_6600/project_1/data/BEE1/bee_train/")
+    expected = np.ndarray(shape = (2, 1), dtype=int)
     expected[0] = [1]
     expected[1] = [0]
 
     trainingList = []
     for index in range(len(beeImages)):
         flattenedBeeData = beeImages[index].flatten()
-        flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
+        if (conv):
+            flattenedBeeData = flattenedBeeData.reshape([32,32,1])
+            expected = [1,0]
+        else:
+            flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
         trainingList.append((flattenedBeeData, expected))
     #=========================================================
 
     #=========================================================
-    noBeeImages = loadBeeImages("/home/Ders/Documents/CS_5600/project_1/data/BEE1/no_bee_train/")
-    expected = np.ndarray(shape = (2, 1))
+    noBeeImages = loadBeeImages("/home/aimperial/School/cs_6600/project_1/data/BEE1/no_bee_train/")
+    expected = np.ndarray(shape = (2, 1), dtype=int)
     expected[0] = [0]
     expected[1] = [1]
 
     noTrainingList = []
     for index in range(len(noBeeImages)):
         flattenedBeeData = noBeeImages[index].flatten()
-        flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
+        if (conv):
+            flattenedBeeData = flattenedBeeData.reshape([32,32,1])
+            expected = [0,1]
+        else:
+            flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
         noTrainingList.append((flattenedBeeData, expected))
     #=========================================================
 
@@ -638,26 +660,121 @@ def getBeeTrainingData():
     random.shuffle(trainingList)
 
     return trainingList
-    pass
 
+# ================================================================
+# Convolution Stuff
+# ================================================================
+def loadNetModel():
+    input_layer = input_data(shape=[None, 32, 32, 1])
+
+    conv_layer_1 = conv_2d(input_layer,
+                           nb_filter=50,
+                           filter_size=5,
+                           activation='relu',
+                           name='conv_layer_1')
+
+    conv_layer_2 = conv_2d(conv_layer_1,
+                           nb_filter=30,
+                           filter_size=3,
+                           activation='relu',
+                           name='conv_layer_2')
+
+    conv_layer_3 = conv_2d(conv_layer_2,
+                           nb_filter=30,
+                           filter_size=3,
+                           activation='relu',
+                           name='conv_layer_3')
+
+    conv_layer_4 = conv_2d(conv_layer_3,
+                           nb_filter=15,
+                           filter_size=5,
+                           activation='relu',
+                           name='conv_layer_4')
+
+    pool_layer_4 = max_pool_2d(conv_layer_4, 2, name='pool_layer_4')
+
+    conv_layer_5 = conv_2d(pool_layer_4,
+                           nb_filter=15,
+                           filter_size=5,
+                           activation='relu',
+                           name='conv_layer_5')
+
+    pool_layer_5 = max_pool_2d(conv_layer_5, 2, name='pool_layer_5')
+
+    fc_layer_1 = fully_connected(pool_layer_5, 50,
+                                 activation='relu',
+                                 name='fc_layer_1')
+
+    fc_layer_2 = fully_connected(fc_layer_1, 2,
+                                 activation='softmax',
+                                 name='fc_layer_2')
+
+    network = regression(fc_layer_2, optimizer='sgd',
+                         loss='categorical_crossentropy',
+                         learning_rate=0.1)
+
+    model = tflearn.DNN(network)
+    return model
+
+def test_tflearn_convnet_model(convnet_model, validX, validY):
+    results = []
+    for i in range(len(validX)):
+        prediction = convnet_model.predict(validX[i].reshape([-1,32,32,1]))
+        #  print(prediction[0], np.argmax(prediction[0]), "       ", np.argmax(validY[i]))
+        results.append(np.argmax(prediction[0]) ==
+                       np.argmax(validY[i]))
+
+    return (sum(results) * 100 / len(results))
+
+def splitInputAndExpected(data):
+    inputData = []
+    expected = []
+
+    for inputSample, expectedSample in data:
+        inputData.append(inputSample)
+        expected.append(expectedSample)
+
+    return (inputData, expected)
+
+# ===========================================================
 def testTrain():
     trainData = getBeeTrainingData()
-    trainData = trainData[:10000]
+    #  trainData = trainData[:10000]
     testData = getBeeTestingData()
-    testData = testData[:5000]
-
-    print(testData)
+    #  testData = testData[:5000]
 
     myNet = network2.Network([1024, 128, 32, 2], CrossEntropyCost)
-    net_stats = myNet.SGD(trainData, 50, 30, 5, 0.1,
+    net_stats = myNet.SGD(trainData, 50, 30, 0.1, 0.08,
                           evaluation_data=testData,
                           monitor_evaluation_cost=True,
                           monitor_evaluation_accuracy=True,
                           monitor_training_cost=True,
                           monitor_training_accuracy=True)
+    myNet.save(savePath + "netSave.txt")
+    save(myNet.weights, savePath + "annBEE1.pck")
 
 
-#====================================
+def testTrainConv():
+    trainData = getBeeTrainingData(conv = True)
+    #  trainData = trainData[:10000]
+    testData = getBeeTestingData(conv = True)
+    #  testData = testData[:5000]
+    inputData, expected = splitInputAndExpected(trainData)
+    inputTest, expecedTest = splitInputAndExpected(testData)
 
-testTrain()
+    netModel = loadNetModel()
+
+    netModel.fit(inputData, expected, 10,
+                shuffle = True,
+                validation_set=(inputTest, expecedTest),
+                show_metric=True,
+                batch_size=20,
+                run_id='convNetBEE1')
+
+    print('ConvNet 5 accuracy = {}'.format(
+        test_tflearn_convnet_model(netModel, inputTest, expecedTest)))
+
+
+#testTrain()
+testTrainConv()
 #runTrails()
