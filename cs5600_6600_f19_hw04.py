@@ -33,6 +33,18 @@ import network2
 
 # Globals
 savePath = "/home/aimperial/School/cs_6600/project_1/"
+noBeeTrain = "/home/aimperial/School/cs_6600/project_1/data/BEE1/no_bee_train/"
+noBeeTrainExpected = np.array([0,1]).reshape(2,1)
+
+beeTrain = "/home/aimperial/School/cs_6600/project_1/data/BEE1/bee_train/"
+beeTrainExpected = np.array([1,0]).reshape(2,1)
+
+noBeeTest = "/home/aimperial/School/cs_6600/project_1/data/BEE1/no_bee_test/"
+noBeeTestExpected = np.array([0,1]).reshape(2,1)
+
+beeTest = "/home/aimperial/School/cs_6600/project_1/data/BEE1/bee_test/"
+beeTestExpected = np.array([1,0]).reshape(2,1)
+
 train_d, valid_d, test_d = [],[],[]
 
 # save() function to save the trained network to a file
@@ -566,96 +578,21 @@ def loadBeeImages(directory):
             else:
                 continue
 
-#   for filename in os.listdir(directory):
-#       if filename.endswith(".png"):
-#           img = cv2.imread(directory + filename)
-#           img = convertAndScaleBeeImage(img)
-#           beeData.append(img)
-#           continue
-#       else:
-#           continue
-
     return beeData
 
-def getBeeTestingData(conv = False):
-    #=========================================================
-    beeImages = loadBeeImages("/home/aimperial/School/cs_6600/project_1/data/BEE1/bee_test")
-    expected = np.ndarray(shape = (2, 1), dtype=int)
-    expected[0] = [1]
-    expected[1] = [0]
-
+def getBeeData(directory, expected, conv = False):
     trainingList = []
-    for index in range(len(beeImages)):
-        flattenedBeeData = beeImages[index].flatten()
-        if (conv):
-            flattenedBeeData = flattenedBeeData.reshape([32,32,1])
-            expected = [1,0]
-        else:
-            flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
-        trainingList.append((flattenedBeeData, expected))
-    #=========================================================
+    for i in range(len(directory)):
+        beeImages = loadBeeImages(directory[i])
 
-    #=========================================================
-    noBeeImages = loadBeeImages("/home/aimperial/School/cs_6600/project_1/data/BEE1/no_bee_test/")
-    expected = np.ndarray(shape = (2, 1), dtype=int)
-    expected[0] = [0]
-    expected[1] = [1]
-
-    noTrainingList = []
-    for index in range(len(noBeeImages)):
-        flattenedBeeData = noBeeImages[index].flatten()
-        if (conv):
-            flattenedBeeData = flattenedBeeData.reshape([32,32,1])
-            expected = [0,1]
-        else:
-            flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
-        noTrainingList.append((flattenedBeeData, expected))
-    #=========================================================
-
-    for sample in noTrainingList:
-        trainingList.append(sample)
-
-    random.shuffle(trainingList)
-
-    return trainingList
-
-def getBeeTrainingData(conv = False):
-    #=========================================================
-    beeImages = loadBeeImages("/home/aimperial/School/cs_6600/project_1/data/BEE1/bee_train/")
-    expected = np.ndarray(shape = (2, 1), dtype=int)
-    expected[0] = [1]
-    expected[1] = [0]
-
-    trainingList = []
-    for index in range(len(beeImages)):
-        flattenedBeeData = beeImages[index].flatten()
-        if (conv):
-            flattenedBeeData = flattenedBeeData.reshape([32,32,1])
-            expected = [1,0]
-        else:
-            flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
-        trainingList.append((flattenedBeeData, expected))
-    #=========================================================
-
-    #=========================================================
-    noBeeImages = loadBeeImages("/home/aimperial/School/cs_6600/project_1/data/BEE1/no_bee_train/")
-    expected = np.ndarray(shape = (2, 1), dtype=int)
-    expected[0] = [0]
-    expected[1] = [1]
-
-    noTrainingList = []
-    for index in range(len(noBeeImages)):
-        flattenedBeeData = noBeeImages[index].flatten()
-        if (conv):
-            flattenedBeeData = flattenedBeeData.reshape([32,32,1])
-            expected = [0,1]
-        else:
-            flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
-        noTrainingList.append((flattenedBeeData, expected))
-    #=========================================================
-
-    for sample in noTrainingList:
-        trainingList.append(sample)
+        for index in range(len(beeImages)):
+            flattenedBeeData = beeImages[index].flatten()
+            if (conv):
+                flattenedBeeData = flattenedBeeData.reshape([32,32,1])
+                expected[i] = expected[i].flatten()
+            else:
+                flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
+            trainingList.append((flattenedBeeData, expected[i]))
 
     random.shuffle(trainingList)
 
@@ -720,7 +657,6 @@ def test_tflearn_convnet_model(convnet_model, validX, validY):
     results = []
     for i in range(len(validX)):
         prediction = convnet_model.predict(validX[i].reshape([-1,32,32,1]))
-        #  print(prediction[0], np.argmax(prediction[0]), "       ", np.argmax(validY[i]))
         results.append(np.argmax(prediction[0]) ==
                        np.argmax(validY[i]))
 
@@ -738,10 +674,8 @@ def splitInputAndExpected(data):
 
 # ===========================================================
 def testTrain():
-    trainData = getBeeTrainingData()
-    #  trainData = trainData[:10000]
-    testData = getBeeTestingData()
-    #  testData = testData[:5000]
+    trainData = getBeeData([beeTrain, noBeeTrain], [beeTrainExpected, noBeeTrainExpected])
+    testData = getBeeData([beeTest, noBeeTest], [beeTestExpected, noBeeTestExpected])
 
     myNet = network2.Network([1024, 128, 32, 2], CrossEntropyCost)
     net_stats = myNet.SGD(trainData, 50, 30, 0.15, 0.1,
@@ -755,10 +689,9 @@ def testTrain():
 
 
 def testTrainConv():
-    trainData = getBeeTrainingData(conv = True)
-    #  trainData = trainData[:10000]
-    testData = getBeeTestingData(conv = True)
-    #  testData = testData[:5000]
+    trainData = getBeeData([beeTrain, noBeeTrain], [beeTrainExpected, noBeeTrainExpected], True)
+    testData = getBeeData([beeTest, noBeeTest], [beeTestExpected, noBeeTestExpected], True)
+
     inputData, expected = splitInputAndExpected(trainData)
     inputTest, expecedTest = splitInputAndExpected(testData)
 
@@ -775,6 +708,6 @@ def testTrainConv():
         test_tflearn_convnet_model(netModel, inputTest, expecedTest)))
 
 
-#testTrain()
+testTrain()
 testTrainConv()
 #runTrails()
