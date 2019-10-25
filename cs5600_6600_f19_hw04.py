@@ -744,7 +744,7 @@ def testTrain():
     #  testData = testData[:5000]
 
     myNet = network2.Network([1024, 128, 32, 2], CrossEntropyCost)
-    net_stats = myNet.SGD(trainData, 50, 30, 0.1, 0.08,
+    net_stats = myNet.SGD(trainData, 50, 30, 0.15, 0.1,
                           evaluation_data=testData,
                           monitor_evaluation_cost=True,
                           monitor_evaluation_accuracy=True,
