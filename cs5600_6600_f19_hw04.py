@@ -15,6 +15,7 @@ import json
 import random
 import sys
 import os
+import math
 
 # Third-party libraries
 import numpy as np
@@ -44,6 +45,48 @@ noBeeTestExpected = np.array([0,1]).reshape(2,1)
 
 beeTest = "/home/aimperial/School/cs_6600/project_1/data/BEE1/bee_test/"
 beeTestExpected = np.array([1,0]).reshape(2,1)
+
+noBeeValid = "/home/aimperial/School/cs_6600/project_1/data/BEE1/no_bee_valid/"
+noBeeValidExpected = np.array([0,1]).reshape(2,1)
+
+beeValid = "/home/aimperial/School/cs_6600/project_1/data/BEE1/bee_valid/"
+beeValidExpected = np.array([1,0]).reshape(2,1)
+
+noBee2Train = "/home/aimperial/School/cs_6600/project_1/data/BEE2/training/no_bee/"
+noBee2TrainExpected = np.array([0,1]).reshape(2,1)
+
+bee2Train = "/home/aimperial/School/cs_6600/project_1/data/BEE2/training/bee/"
+bee2TrainExpected = np.array([1,0]).reshape(2,1)
+
+noBee2Test = "/home/aimperial/School/cs_6600/project_1/data/BEE2/testing/no_bee/"
+noBee2TestExpected = np.array([0,1]).reshape(2,1)
+
+bee2Test = "/home/aimperial/School/cs_6600/project_1/data/BEE2/testing/bee/"
+bee2TestExpected = np.array([1,0]).reshape(2,1)
+
+noBee2Valid = "/home/aimperial/School/cs_6600/project_1/data/BEE2/validation/no_bee/"
+noBee2ValidExpected = np.array([0,1]).reshape(2,1)
+
+bee2Valid = "/home/aimperial/School/cs_6600/project_1/data/BEE2/validation/bee/"
+bee2ValidExpected = np.array([1,0]).reshape(2,1)
+
+noBee2BTrain = "/home/aimperial/School/cs_6600/project_1/data/BEE2B/training/no_bee/"
+noBee2BTrainExpected = np.array([0,1]).reshape(2,1)
+
+bee2BTrain = "/home/aimperial/School/cs_6600/project_1/data/BEE2B/training/bee/"
+bee2BTrainExpected = np.array([1,0]).reshape(2,1)
+
+noBee2BTest = "/home/aimperial/School/cs_6600/project_1/data/BEE2B/testing/no_bee/"
+noBee2BTestExpected = np.array([0,1]).reshape(2,1)
+
+bee2BTest = "/home/aimperial/School/cs_6600/project_1/data/BEE2B/testing/bee/"
+bee2BTestExpected = np.array([1,0]).reshape(2,1)
+
+noBee2BValid = "/home/aimperial/School/cs_6600/project_1/data/BEE2B/validation/no_bee/"
+noBee2BValidExpected = np.array([0,1]).reshape(2,1)
+
+bee2BValid = "/home/aimperial/School/cs_6600/project_1/data/BEE2B/validation/bee/"
+bee2BValidExpected = np.array([1,0]).reshape(2,1)
 
 train_d, valid_d, test_d = [],[],[]
 
@@ -580,18 +623,23 @@ def loadBeeImages(directory):
 
     return beeData
 
-def getBeeData(directory, expected, conv = False):
+def getBeeData(directory, expected, conv = False, expectedSquare = 32):
     trainingList = []
     for i in range(len(directory)):
         beeImages = loadBeeImages(directory[i])
 
         for index in range(len(beeImages)):
             flattenedBeeData = beeImages[index].flatten()
+            if len(flattenedBeeData) != expectedSquare * expectedSquare:
+                resizedImg = cv2.resize(beeImages[index],(expectedSquare,expectedSquare))
+                flattenedBeeData = resizedImg.flatten()
+
             if (conv):
-                flattenedBeeData = flattenedBeeData.reshape([32,32,1])
+                flattenedBeeData = flattenedBeeData.reshape([expectedSquare,expectedSquare,1])
                 expected[i] = expected[i].flatten()
             else:
                 flattenedBeeData = flattenedBeeData.reshape(len(flattenedBeeData), 1)
+
             trainingList.append((flattenedBeeData, expected[i]))
 
     random.shuffle(trainingList)
@@ -601,8 +649,8 @@ def getBeeData(directory, expected, conv = False):
 # ================================================================
 # Convolution Stuff
 # ================================================================
-def loadNetModel():
-    input_layer = input_data(shape=[None, 32, 32, 1])
+def loadNetModel(expectedSquare = 32):
+    input_layer = input_data(shape=[None, expectedSquare, expectedSquare, 1])
 
     conv_layer_1 = conv_2d(input_layer,
                            nb_filter=50,
@@ -653,10 +701,10 @@ def loadNetModel():
     model = tflearn.DNN(network)
     return model
 
-def test_tflearn_convnet_model(convnet_model, validX, validY):
+def test_tflearn_convnet_model(convnet_model, validX, validY, expectedSquare = 32):
     results = []
     for i in range(len(validX)):
-        prediction = convnet_model.predict(validX[i].reshape([-1,32,32,1]))
+        prediction = convnet_model.predict(validX[i].reshape([-1,expectedSquare,expectedSquare,1]))
         results.append(np.argmax(prediction[0]) ==
                        np.argmax(validY[i]))
 
@@ -687,27 +735,67 @@ def testTrain():
     myNet.save(savePath + "netSave.txt")
     save(myNet.weights, savePath + "annBEE1.pck")
 
+def testTrainBee2():
+    trainData = getBeeData([bee2Train, noBee2Train], [bee2TrainExpected, noBee2TrainExpected], expectedSquare = 90)
+    testData = getBeeData([bee2Test, noBee2Test], [bee2TestExpected, noBee2TestExpected], expectedSquare = 90)
+    validData = getBeeData([bee2Valid, noBee2Valid], [bee2ValidExpected, noBee2ValidExpected], expectedSquare = 90)
 
-def testTrainConv():
+    myNet = network2.Network([8100, 128, 32, 2], CrossEntropyCost)
+    net_stats = myNet.SGD(trainData, 50, 30, 0.15, 0.1,
+                          evaluation_data=testData,
+                          monitor_evaluation_cost=True,
+                          monitor_evaluation_accuracy=True,
+                          monitor_training_cost=True,
+                          monitor_training_accuracy=True)
+    myNet.save(savePath + "netSave.txt")
+    save(myNet.weights, savePath + "annBEE1.pck")
+
+
+def testTrainConvBee1():
     trainData = getBeeData([beeTrain, noBeeTrain], [beeTrainExpected, noBeeTrainExpected], True)
     testData = getBeeData([beeTest, noBeeTest], [beeTestExpected, noBeeTestExpected], True)
+    validData = getBeeData([beeValid, noBeeValid], [beeValidExpected, noBeeTrainExpected], True)
 
     inputData, expected = splitInputAndExpected(trainData)
-    inputTest, expecedTest = splitInputAndExpected(testData)
+    inputTest, expectedTest = splitInputAndExpected(testData)
+    inputValid, expectedValid = splitInputAndExpected(validData)
 
     netModel = loadNetModel()
 
     netModel.fit(inputData, expected, 10,
                 shuffle = True,
-                validation_set=(inputTest, expecedTest),
+                validation_set=(inputTest, expectedTest),
                 show_metric=True,
                 batch_size=20,
                 run_id='convNetBEE1')
 
     print('ConvNet 5 accuracy = {}'.format(
-        test_tflearn_convnet_model(netModel, inputTest, expecedTest)))
+        test_tflearn_convnet_model(netModel, inputValid, expectedValid)))
+
+def testTrainConvBee2():
+    trainData = getBeeData([bee2Train, noBee2Train, bee2BTrain, noBee2BTrain], [bee2TrainExpected, noBee2TrainExpected, bee2BTrainExpected, noBee2BTrainExpected], True, 90)
+    testData = getBeeData([bee2Test, noBee2Test, bee2BTest, noBee2BTest], [bee2TestExpected, noBee2TestExpected, bee2BTestExpected, noBee2BTestExpected], True, 90)
+    validData = getBeeData([bee2Valid, noBee2Valid, bee2BValid, noBee2BValid], [bee2ValidExpected, noBee2ValidExpected, bee2BValidExpected, noBee2BValidExpected], True, 90)
+
+    inputData, expected = splitInputAndExpected(trainData)
+    inputTest, expectedTest = splitInputAndExpected(testData)
+    inputValid, expectedValid = splitInputAndExpected(validData)
+
+    netModel = loadNetModel(90)
+
+    netModel.fit(inputData, expected, 10,
+                shuffle = True,
+                validation_set=(inputTest, expectedTest),
+                show_metric=True,
+                batch_size=20,
+                run_id='convNetBEE2')
+
+    print('ConvNet 5 accuracy = {}'.format(
+        test_tflearn_convnet_model(netModel, inputValid, expectedValid, 90)))
 
 
-testTrain()
-testTrainConv()
+#  testTrain()
+testTrainBee2()
+#  testTrainConvBee1()
+#  testTrainConvBee2()
 #runTrails()
