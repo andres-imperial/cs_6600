@@ -20,34 +20,12 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='object_detection/protos/box_predictor.proto',
   package='object_detection.protos',
   syntax='proto2',
-  serialized_pb=_b('\n+object_detection/protos/box_predictor.proto\x12\x17object_detection.protos\x1a)object_detection/protos/hyperparams.proto\"\x90\x03\n\x0c\x42oxPredictor\x12Y\n\x1b\x63onvolutional_box_predictor\x18\x01 \x01(\x0b\x32\x32.object_detection.protos.ConvolutionalBoxPredictorH\x00\x12P\n\x17mask_rcnn_box_predictor\x18\x02 \x01(\x0b\x32-.object_detection.protos.MaskRCNNBoxPredictorH\x00\x12G\n\x12rfcn_box_predictor\x18\x03 \x01(\x0b\x32).object_detection.protos.RfcnBoxPredictorH\x00\x12s\n)weight_shared_convolutional_box_predictor\x18\x04 \x01(\x0b\x32>.object_detection.protos.WeightSharedConvolutionalBoxPredictorH\x00\x42\x15\n\x13\x62ox_predictor_oneof\"\xaf\x04\n\x19\x43onvolutionalBoxPredictor\x12>\n\x10\x63onv_hyperparams\x18\x01 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12\x14\n\tmin_depth\x18\x02 \x01(\x05:\x01\x30\x12\x14\n\tmax_depth\x18\x03 \x01(\x05:\x01\x30\x12&\n\x1bnum_layers_before_predictor\x18\x04 \x01(\x05:\x01\x30\x12\x19\n\x0buse_dropout\x18\x05 \x01(\x08:\x04true\x12%\n\x18\x64ropout_keep_probability\x18\x06 \x01(\x02:\x03\x30.8\x12\x16\n\x0bkernel_size\x18\x07 \x01(\x05:\x01\x31\x12\x18\n\rbox_code_size\x18\x08 \x01(\x05:\x01\x34\x12&\n\x17\x61pply_sigmoid_to_scores\x18\t \x01(\x08:\x05\x66\x61lse\x12%\n\x1a\x63lass_prediction_bias_init\x18\n \x01(\x02:\x01\x30\x12\x1c\n\ruse_depthwise\x18\x0b \x01(\x08:\x05\x66\x61lse\x12j\n\x18\x62ox_encodings_clip_range\x18\x0c \x01(\x0b\x32H.object_detection.protos.ConvolutionalBoxPredictor.BoxEncodingsClipRange\x1a\x31\n\x15\x42oxEncodingsClipRange\x12\x0b\n\x03min\x18\x01 \x01(\x02\x12\x0b\n\x03max\x18\x02 \x01(\x02\"\xcc\x05\n%WeightSharedConvolutionalBoxPredictor\x12>\n\x10\x63onv_hyperparams\x18\x01 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12&\n\x1bnum_layers_before_predictor\x18\x04 \x01(\x05:\x01\x30\x12\x10\n\x05\x64\x65pth\x18\x02 \x01(\x05:\x01\x30\x12\x16\n\x0bkernel_size\x18\x07 \x01(\x05:\x01\x33\x12\x18\n\rbox_code_size\x18\x08 \x01(\x05:\x01\x34\x12%\n\x1a\x63lass_prediction_bias_init\x18\n \x01(\x02:\x01\x30\x12\x1a\n\x0buse_dropout\x18\x0b \x01(\x08:\x05\x66\x61lse\x12%\n\x18\x64ropout_keep_probability\x18\x0c \x01(\x02:\x03\x30.8\x12%\n\x16share_prediction_tower\x18\r \x01(\x08:\x05\x66\x61lse\x12\x1c\n\ruse_depthwise\x18\x0e \x01(\x08:\x05\x66\x61lse\x12p\n\x0fscore_converter\x18\x10 \x01(\x0e\x32M.object_detection.protos.WeightSharedConvolutionalBoxPredictor.ScoreConverter:\x08IDENTITY\x12v\n\x18\x62ox_encodings_clip_range\x18\x11 \x01(\x0b\x32T.object_detection.protos.WeightSharedConvolutionalBoxPredictor.BoxEncodingsClipRange\x1a\x31\n\x15\x42oxEncodingsClipRange\x12\x0b\n\x03min\x18\x01 \x01(\x02\x12\x0b\n\x03max\x18\x02 \x01(\x02\"+\n\x0eScoreConverter\x12\x0c\n\x08IDENTITY\x10\x00\x12\x0b\n\x07SIGMOID\x10\x01\"\xbf\x04\n\x14MaskRCNNBoxPredictor\x12<\n\x0e\x66\x63_hyperparams\x18\x01 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12\x1a\n\x0buse_dropout\x18\x02 \x01(\x08:\x05\x66\x61lse\x12%\n\x18\x64ropout_keep_probability\x18\x03 \x01(\x02:\x03\x30.5\x12\x18\n\rbox_code_size\x18\x04 \x01(\x05:\x01\x34\x12>\n\x10\x63onv_hyperparams\x18\x05 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12%\n\x16predict_instance_masks\x18\x06 \x01(\x08:\x05\x66\x61lse\x12\'\n\x1amask_prediction_conv_depth\x18\x07 \x01(\x05:\x03\x32\x35\x36\x12 \n\x11predict_keypoints\x18\x08 \x01(\x08:\x05\x66\x61lse\x12\x17\n\x0bmask_height\x18\t \x01(\x05:\x02\x31\x35\x12\x16\n\nmask_width\x18\n \x01(\x05:\x02\x31\x35\x12*\n\x1fmask_prediction_num_conv_layers\x18\x0b \x01(\x05:\x01\x32\x12\'\n\x18masks_are_class_agnostic\x18\x0c \x01(\x08:\x05\x66\x61lse\x12\'\n\x18share_box_across_classes\x18\r \x01(\x08:\x05\x66\x61lse\x12+\n\x1c\x63onvolve_then_upsample_masks\x18\x0e \x01(\x08:\x05\x66\x61lse\"\xf9\x01\n\x10RfcnBoxPredictor\x12>\n\x10\x63onv_hyperparams\x18\x01 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12\"\n\x17num_spatial_bins_height\x18\x02 \x01(\x05:\x01\x33\x12!\n\x16num_spatial_bins_width\x18\x03 \x01(\x05:\x01\x33\x12\x13\n\x05\x64\x65pth\x18\x04 \x01(\x05:\x04\x31\x30\x32\x34\x12\x18\n\rbox_code_size\x18\x05 \x01(\x05:\x01\x34\x12\x17\n\x0b\x63rop_height\x18\x06 \x01(\x05:\x02\x31\x32\x12\x16\n\ncrop_width\x18\x07 \x01(\x05:\x02\x31\x32')
+  serialized_pb=_b('\n+object_detection/protos/box_predictor.proto\x12\x17object_detection.protos\x1a)object_detection/protos/hyperparams.proto\"\x90\x03\n\x0c\x42oxPredictor\x12Y\n\x1b\x63onvolutional_box_predictor\x18\x01 \x01(\x0b\x32\x32.object_detection.protos.ConvolutionalBoxPredictorH\x00\x12P\n\x17mask_rcnn_box_predictor\x18\x02 \x01(\x0b\x32-.object_detection.protos.MaskRCNNBoxPredictorH\x00\x12G\n\x12rfcn_box_predictor\x18\x03 \x01(\x0b\x32).object_detection.protos.RfcnBoxPredictorH\x00\x12s\n)weight_shared_convolutional_box_predictor\x18\x04 \x01(\x0b\x32>.object_detection.protos.WeightSharedConvolutionalBoxPredictorH\x00\x42\x15\n\x13\x62ox_predictor_oneof\"\x90\x03\n\x19\x43onvolutionalBoxPredictor\x12>\n\x10\x63onv_hyperparams\x18\x01 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12\x14\n\tmin_depth\x18\x02 \x01(\x05:\x01\x30\x12\x14\n\tmax_depth\x18\x03 \x01(\x05:\x01\x30\x12&\n\x1bnum_layers_before_predictor\x18\x04 \x01(\x05:\x01\x30\x12\x19\n\x0buse_dropout\x18\x05 \x01(\x08:\x04true\x12%\n\x18\x64ropout_keep_probability\x18\x06 \x01(\x02:\x03\x30.8\x12\x16\n\x0bkernel_size\x18\x07 \x01(\x05:\x01\x31\x12\x18\n\rbox_code_size\x18\x08 \x01(\x05:\x01\x34\x12&\n\x17\x61pply_sigmoid_to_scores\x18\t \x01(\x08:\x05\x66\x61lse\x12%\n\x1a\x63lass_prediction_bias_init\x18\n \x01(\x02:\x01\x30\x12\x1c\n\ruse_depthwise\x18\x0b \x01(\x08:\x05\x66\x61lse\"\xbd\x02\n%WeightSharedConvolutionalBoxPredictor\x12>\n\x10\x63onv_hyperparams\x18\x01 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12&\n\x1bnum_layers_before_predictor\x18\x04 \x01(\x05:\x01\x30\x12\x10\n\x05\x64\x65pth\x18\x02 \x01(\x05:\x01\x30\x12\x16\n\x0bkernel_size\x18\x07 \x01(\x05:\x01\x33\x12\x18\n\rbox_code_size\x18\x08 \x01(\x05:\x01\x34\x12%\n\x1a\x63lass_prediction_bias_init\x18\n \x01(\x02:\x01\x30\x12\x1a\n\x0buse_dropout\x18\x0b \x01(\x08:\x05\x66\x61lse\x12%\n\x18\x64ropout_keep_probability\x18\x0c \x01(\x02:\x03\x30.8\"\x92\x04\n\x14MaskRCNNBoxPredictor\x12<\n\x0e\x66\x63_hyperparams\x18\x01 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12\x1a\n\x0buse_dropout\x18\x02 \x01(\x08:\x05\x66\x61lse\x12%\n\x18\x64ropout_keep_probability\x18\x03 \x01(\x02:\x03\x30.5\x12\x18\n\rbox_code_size\x18\x04 \x01(\x05:\x01\x34\x12>\n\x10\x63onv_hyperparams\x18\x05 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12%\n\x16predict_instance_masks\x18\x06 \x01(\x08:\x05\x66\x61lse\x12\'\n\x1amask_prediction_conv_depth\x18\x07 \x01(\x05:\x03\x32\x35\x36\x12 \n\x11predict_keypoints\x18\x08 \x01(\x08:\x05\x66\x61lse\x12\x17\n\x0bmask_height\x18\t \x01(\x05:\x02\x31\x35\x12\x16\n\nmask_width\x18\n \x01(\x05:\x02\x31\x35\x12*\n\x1fmask_prediction_num_conv_layers\x18\x0b \x01(\x05:\x01\x32\x12\'\n\x18masks_are_class_agnostic\x18\x0c \x01(\x08:\x05\x66\x61lse\x12\'\n\x18share_box_across_classes\x18\r \x01(\x08:\x05\x66\x61lse\"\xf9\x01\n\x10RfcnBoxPredictor\x12>\n\x10\x63onv_hyperparams\x18\x01 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12\"\n\x17num_spatial_bins_height\x18\x02 \x01(\x05:\x01\x33\x12!\n\x16num_spatial_bins_width\x18\x03 \x01(\x05:\x01\x33\x12\x13\n\x05\x64\x65pth\x18\x04 \x01(\x05:\x04\x31\x30\x32\x34\x12\x18\n\rbox_code_size\x18\x05 \x01(\x05:\x01\x34\x12\x17\n\x0b\x63rop_height\x18\x06 \x01(\x05:\x02\x31\x32\x12\x16\n\ncrop_width\x18\x07 \x01(\x05:\x02\x31\x32')
   ,
   dependencies=[object__detection_dot_protos_dot_hyperparams__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
-
-_WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_SCORECONVERTER = _descriptor.EnumDescriptor(
-  name='ScoreConverter',
-  full_name='object_detection.protos.WeightSharedConvolutionalBoxPredictor.ScoreConverter',
-  filename=None,
-  file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='IDENTITY', index=0, number=0,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='SIGMOID', index=1, number=1,
-      options=None,
-      type=None),
-  ],
-  containing_type=None,
-  options=None,
-  serialized_start=1754,
-  serialized_end=1797,
-)
-_sym_db.RegisterEnumDescriptor(_WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_SCORECONVERTER)
 
 
 _BOXPREDICTOR = _descriptor.Descriptor(
@@ -104,43 +82,6 @@ _BOXPREDICTOR = _descriptor.Descriptor(
   serialized_end=516,
 )
 
-
-_CONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE = _descriptor.Descriptor(
-  name='BoxEncodingsClipRange',
-  full_name='object_detection.protos.ConvolutionalBoxPredictor.BoxEncodingsClipRange',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='min', full_name='object_detection.protos.ConvolutionalBoxPredictor.BoxEncodingsClipRange.min', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='max', full_name='object_detection.protos.ConvolutionalBoxPredictor.BoxEncodingsClipRange.max', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1029,
-  serialized_end=1078,
-)
 
 _CONVOLUTIONALBOXPREDICTOR = _descriptor.Descriptor(
   name='ConvolutionalBoxPredictor',
@@ -226,51 +167,6 @@ _CONVOLUTIONALBOXPREDICTOR = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    _descriptor.FieldDescriptor(
-      name='box_encodings_clip_range', full_name='object_detection.protos.ConvolutionalBoxPredictor.box_encodings_clip_range', index=11,
-      number=12, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[_CONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE, ],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=519,
-  serialized_end=1078,
-)
-
-
-_WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE = _descriptor.Descriptor(
-  name='BoxEncodingsClipRange',
-  full_name='object_detection.protos.WeightSharedConvolutionalBoxPredictor.BoxEncodingsClipRange',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='min', full_name='object_detection.protos.WeightSharedConvolutionalBoxPredictor.BoxEncodingsClipRange.min', index=0,
-      number=1, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='max', full_name='object_detection.protos.WeightSharedConvolutionalBoxPredictor.BoxEncodingsClipRange.max', index=1,
-      number=2, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -283,9 +179,10 @@ _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE = _descriptor.Descr
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1029,
-  serialized_end=1078,
+  serialized_start=519,
+  serialized_end=919,
 )
+
 
 _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR = _descriptor.Descriptor(
   name='WeightSharedConvolutionalBoxPredictor',
@@ -350,40 +247,11 @@ _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    _descriptor.FieldDescriptor(
-      name='share_prediction_tower', full_name='object_detection.protos.WeightSharedConvolutionalBoxPredictor.share_prediction_tower', index=8,
-      number=13, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='use_depthwise', full_name='object_detection.protos.WeightSharedConvolutionalBoxPredictor.use_depthwise', index=9,
-      number=14, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='score_converter', full_name='object_detection.protos.WeightSharedConvolutionalBoxPredictor.score_converter', index=10,
-      number=16, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='box_encodings_clip_range', full_name='object_detection.protos.WeightSharedConvolutionalBoxPredictor.box_encodings_clip_range', index=11,
-      number=17, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
-  nested_types=[_WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE, ],
+  nested_types=[],
   enum_types=[
-    _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_SCORECONVERTER,
   ],
   options=None,
   is_extendable=False,
@@ -391,8 +259,8 @@ _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1081,
-  serialized_end=1797,
+  serialized_start=922,
+  serialized_end=1239,
 )
 
 
@@ -494,13 +362,6 @@ _MASKRCNNBOXPREDICTOR = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    _descriptor.FieldDescriptor(
-      name='convolve_then_upsample_masks', full_name='object_detection.protos.MaskRCNNBoxPredictor.convolve_then_upsample_masks', index=13,
-      number=14, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -513,8 +374,8 @@ _MASKRCNNBOXPREDICTOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1800,
-  serialized_end=2375,
+  serialized_start=1242,
+  serialized_end=1772,
 )
 
 
@@ -586,8 +447,8 @@ _RFCNBOXPREDICTOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=2378,
-  serialized_end=2627,
+  serialized_start=1775,
+  serialized_end=2024,
 )
 
 _BOXPREDICTOR.fields_by_name['convolutional_box_predictor'].message_type = _CONVOLUTIONALBOXPREDICTOR
@@ -606,14 +467,8 @@ _BOXPREDICTOR.fields_by_name['rfcn_box_predictor'].containing_oneof = _BOXPREDIC
 _BOXPREDICTOR.oneofs_by_name['box_predictor_oneof'].fields.append(
   _BOXPREDICTOR.fields_by_name['weight_shared_convolutional_box_predictor'])
 _BOXPREDICTOR.fields_by_name['weight_shared_convolutional_box_predictor'].containing_oneof = _BOXPREDICTOR.oneofs_by_name['box_predictor_oneof']
-_CONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE.containing_type = _CONVOLUTIONALBOXPREDICTOR
 _CONVOLUTIONALBOXPREDICTOR.fields_by_name['conv_hyperparams'].message_type = object__detection_dot_protos_dot_hyperparams__pb2._HYPERPARAMS
-_CONVOLUTIONALBOXPREDICTOR.fields_by_name['box_encodings_clip_range'].message_type = _CONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE
-_WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE.containing_type = _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR
 _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR.fields_by_name['conv_hyperparams'].message_type = object__detection_dot_protos_dot_hyperparams__pb2._HYPERPARAMS
-_WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR.fields_by_name['score_converter'].enum_type = _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_SCORECONVERTER
-_WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR.fields_by_name['box_encodings_clip_range'].message_type = _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE
-_WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_SCORECONVERTER.containing_type = _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR
 _MASKRCNNBOXPREDICTOR.fields_by_name['fc_hyperparams'].message_type = object__detection_dot_protos_dot_hyperparams__pb2._HYPERPARAMS
 _MASKRCNNBOXPREDICTOR.fields_by_name['conv_hyperparams'].message_type = object__detection_dot_protos_dot_hyperparams__pb2._HYPERPARAMS
 _RFCNBOXPREDICTOR.fields_by_name['conv_hyperparams'].message_type = object__detection_dot_protos_dot_hyperparams__pb2._HYPERPARAMS
@@ -631,34 +486,18 @@ BoxPredictor = _reflection.GeneratedProtocolMessageType('BoxPredictor', (_messag
 _sym_db.RegisterMessage(BoxPredictor)
 
 ConvolutionalBoxPredictor = _reflection.GeneratedProtocolMessageType('ConvolutionalBoxPredictor', (_message.Message,), dict(
-
-  BoxEncodingsClipRange = _reflection.GeneratedProtocolMessageType('BoxEncodingsClipRange', (_message.Message,), dict(
-    DESCRIPTOR = _CONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE,
-    __module__ = 'object_detection.protos.box_predictor_pb2'
-    # @@protoc_insertion_point(class_scope:object_detection.protos.ConvolutionalBoxPredictor.BoxEncodingsClipRange)
-    ))
-  ,
   DESCRIPTOR = _CONVOLUTIONALBOXPREDICTOR,
   __module__ = 'object_detection.protos.box_predictor_pb2'
   # @@protoc_insertion_point(class_scope:object_detection.protos.ConvolutionalBoxPredictor)
   ))
 _sym_db.RegisterMessage(ConvolutionalBoxPredictor)
-_sym_db.RegisterMessage(ConvolutionalBoxPredictor.BoxEncodingsClipRange)
 
 WeightSharedConvolutionalBoxPredictor = _reflection.GeneratedProtocolMessageType('WeightSharedConvolutionalBoxPredictor', (_message.Message,), dict(
-
-  BoxEncodingsClipRange = _reflection.GeneratedProtocolMessageType('BoxEncodingsClipRange', (_message.Message,), dict(
-    DESCRIPTOR = _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR_BOXENCODINGSCLIPRANGE,
-    __module__ = 'object_detection.protos.box_predictor_pb2'
-    # @@protoc_insertion_point(class_scope:object_detection.protos.WeightSharedConvolutionalBoxPredictor.BoxEncodingsClipRange)
-    ))
-  ,
   DESCRIPTOR = _WEIGHTSHAREDCONVOLUTIONALBOXPREDICTOR,
   __module__ = 'object_detection.protos.box_predictor_pb2'
   # @@protoc_insertion_point(class_scope:object_detection.protos.WeightSharedConvolutionalBoxPredictor)
   ))
 _sym_db.RegisterMessage(WeightSharedConvolutionalBoxPredictor)
-_sym_db.RegisterMessage(WeightSharedConvolutionalBoxPredictor.BoxEncodingsClipRange)
 
 MaskRCNNBoxPredictor = _reflection.GeneratedProtocolMessageType('MaskRCNNBoxPredictor', (_message.Message,), dict(
   DESCRIPTOR = _MASKRCNNBOXPREDICTOR,

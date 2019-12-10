@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='object_detection/protos/image_resizer.proto',
   package='object_detection.protos',
   syntax='proto2',
-  serialized_pb=_b('\n+object_detection/protos/image_resizer.proto\x12\x17object_detection.protos\"\xe3\x02\n\x0cImageResizer\x12T\n\x19keep_aspect_ratio_resizer\x18\x01 \x01(\x0b\x32/.object_detection.protos.KeepAspectRatioResizerH\x00\x12I\n\x13\x66ixed_shape_resizer\x18\x02 \x01(\x0b\x32*.object_detection.protos.FixedShapeResizerH\x00\x12\x44\n\x10identity_resizer\x18\x03 \x01(\x0b\x32(.object_detection.protos.IdentityResizerH\x00\x12U\n\x19\x63onditional_shape_resizer\x18\x04 \x01(\x0b\x32\x30.object_detection.protos.ConditionalShapeResizerH\x00\x42\x15\n\x13image_resizer_oneof\"\x11\n\x0fIdentityResizer\"\x80\x02\n\x16KeepAspectRatioResizer\x12\x1a\n\rmin_dimension\x18\x01 \x01(\x05:\x03\x36\x30\x30\x12\x1b\n\rmax_dimension\x18\x02 \x01(\x05:\x04\x31\x30\x32\x34\x12\x44\n\rresize_method\x18\x03 \x01(\x0e\x32#.object_detection.protos.ResizeType:\x08\x42ILINEAR\x12#\n\x14pad_to_max_dimension\x18\x04 \x01(\x08:\x05\x66\x61lse\x12#\n\x14\x63onvert_to_grayscale\x18\x05 \x01(\x08:\x05\x66\x61lse\x12\x1d\n\x15per_channel_pad_value\x18\x06 \x03(\x02\"\xa7\x01\n\x11\x46ixedShapeResizer\x12\x13\n\x06height\x18\x01 \x01(\x05:\x03\x33\x30\x30\x12\x12\n\x05width\x18\x02 \x01(\x05:\x03\x33\x30\x30\x12\x44\n\rresize_method\x18\x03 \x01(\x0e\x32#.object_detection.protos.ResizeType:\x08\x42ILINEAR\x12#\n\x14\x63onvert_to_grayscale\x18\x04 \x01(\x08:\x05\x66\x61lse\"\xb9\x02\n\x17\x43onditionalShapeResizer\x12\\\n\tcondition\x18\x01 \x01(\x0e\x32@.object_detection.protos.ConditionalShapeResizer.ResizeCondition:\x07GREATER\x12\x1b\n\x0esize_threshold\x18\x02 \x01(\x05:\x03\x33\x30\x30\x12\x44\n\rresize_method\x18\x03 \x01(\x0e\x32#.object_detection.protos.ResizeType:\x08\x42ILINEAR\x12#\n\x14\x63onvert_to_grayscale\x18\x04 \x01(\x08:\x05\x66\x61lse\"8\n\x0fResizeCondition\x12\x0b\n\x07INVALID\x10\x00\x12\x0b\n\x07GREATER\x10\x01\x12\x0b\n\x07SMALLER\x10\x02*G\n\nResizeType\x12\x0c\n\x08\x42ILINEAR\x10\x00\x12\x14\n\x10NEAREST_NEIGHBOR\x10\x01\x12\x0b\n\x07\x42ICUBIC\x10\x02\x12\x08\n\x04\x41REA\x10\x03')
+  serialized_pb=_b('\n+object_detection/protos/image_resizer.proto\x12\x17object_detection.protos\"\xc6\x01\n\x0cImageResizer\x12T\n\x19keep_aspect_ratio_resizer\x18\x01 \x01(\x0b\x32/.object_detection.protos.KeepAspectRatioResizerH\x00\x12I\n\x13\x66ixed_shape_resizer\x18\x02 \x01(\x0b\x32*.object_detection.protos.FixedShapeResizerH\x00\x42\x15\n\x13image_resizer_oneof\"\xe1\x01\n\x16KeepAspectRatioResizer\x12\x1a\n\rmin_dimension\x18\x01 \x01(\x05:\x03\x36\x30\x30\x12\x1b\n\rmax_dimension\x18\x02 \x01(\x05:\x04\x31\x30\x32\x34\x12\x44\n\rresize_method\x18\x03 \x01(\x0e\x32#.object_detection.protos.ResizeType:\x08\x42ILINEAR\x12#\n\x14pad_to_max_dimension\x18\x04 \x01(\x08:\x05\x66\x61lse\x12#\n\x14\x63onvert_to_grayscale\x18\x05 \x01(\x08:\x05\x66\x61lse\"\xa7\x01\n\x11\x46ixedShapeResizer\x12\x13\n\x06height\x18\x01 \x01(\x05:\x03\x33\x30\x30\x12\x12\n\x05width\x18\x02 \x01(\x05:\x03\x33\x30\x30\x12\x44\n\rresize_method\x18\x03 \x01(\x0e\x32#.object_detection.protos.ResizeType:\x08\x42ILINEAR\x12#\n\x14\x63onvert_to_grayscale\x18\x04 \x01(\x08:\x05\x66\x61lse*G\n\nResizeType\x12\x0c\n\x08\x42ILINEAR\x10\x00\x12\x14\n\x10NEAREST_NEIGHBOR\x10\x01\x12\x0b\n\x07\x42ICUBIC\x10\x02\x12\x08\n\x04\x41REA\x10\x03')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -49,8 +49,8 @@ _RESIZETYPE = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1194,
-  serialized_end=1265,
+  serialized_start=671,
+  serialized_end=742,
 )
 _sym_db.RegisterEnumDescriptor(_RESIZETYPE)
 
@@ -60,32 +60,6 @@ NEAREST_NEIGHBOR = 1
 BICUBIC = 2
 AREA = 3
 
-
-_CONDITIONALSHAPERESIZER_RESIZECONDITION = _descriptor.EnumDescriptor(
-  name='ResizeCondition',
-  full_name='object_detection.protos.ConditionalShapeResizer.ResizeCondition',
-  filename=None,
-  file=DESCRIPTOR,
-  values=[
-    _descriptor.EnumValueDescriptor(
-      name='INVALID', index=0, number=0,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='GREATER', index=1, number=1,
-      options=None,
-      type=None),
-    _descriptor.EnumValueDescriptor(
-      name='SMALLER', index=2, number=2,
-      options=None,
-      type=None),
-  ],
-  containing_type=None,
-  options=None,
-  serialized_start=1136,
-  serialized_end=1192,
-)
-_sym_db.RegisterEnumDescriptor(_CONDITIONALSHAPERESIZER_RESIZECONDITION)
 
 
 _IMAGERESIZER = _descriptor.Descriptor(
@@ -109,20 +83,6 @@ _IMAGERESIZER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    _descriptor.FieldDescriptor(
-      name='identity_resizer', full_name='object_detection.protos.ImageResizer.identity_resizer', index=2,
-      number=3, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='conditional_shape_resizer', full_name='object_detection.protos.ImageResizer.conditional_shape_resizer', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -139,31 +99,7 @@ _IMAGERESIZER = _descriptor.Descriptor(
       index=0, containing_type=None, fields=[]),
   ],
   serialized_start=73,
-  serialized_end=428,
-)
-
-
-_IDENTITYRESIZER = _descriptor.Descriptor(
-  name='IdentityResizer',
-  full_name='object_detection.protos.IdentityResizer',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=430,
-  serialized_end=447,
+  serialized_end=271,
 )
 
 
@@ -209,13 +145,6 @@ _KEEPASPECTRATIORESIZER = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    _descriptor.FieldDescriptor(
-      name='per_channel_pad_value', full_name='object_detection.protos.KeepAspectRatioResizer.per_channel_pad_value', index=5,
-      number=6, type=2, cpp_type=6, label=3,
-      has_default_value=False, default_value=[],
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -228,8 +157,8 @@ _KEEPASPECTRATIORESIZER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=450,
-  serialized_end=706,
+  serialized_start=274,
+  serialized_end=499,
 )
 
 
@@ -280,89 +209,23 @@ _FIXEDSHAPERESIZER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=709,
-  serialized_end=876,
-)
-
-
-_CONDITIONALSHAPERESIZER = _descriptor.Descriptor(
-  name='ConditionalShapeResizer',
-  full_name='object_detection.protos.ConditionalShapeResizer',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='condition', full_name='object_detection.protos.ConditionalShapeResizer.condition', index=0,
-      number=1, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=1,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='size_threshold', full_name='object_detection.protos.ConditionalShapeResizer.size_threshold', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=300,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='resize_method', full_name='object_detection.protos.ConditionalShapeResizer.resize_method', index=2,
-      number=3, type=14, cpp_type=8, label=1,
-      has_default_value=True, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='convert_to_grayscale', full_name='object_detection.protos.ConditionalShapeResizer.convert_to_grayscale', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-    _CONDITIONALSHAPERESIZER_RESIZECONDITION,
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=879,
-  serialized_end=1192,
+  serialized_start=502,
+  serialized_end=669,
 )
 
 _IMAGERESIZER.fields_by_name['keep_aspect_ratio_resizer'].message_type = _KEEPASPECTRATIORESIZER
 _IMAGERESIZER.fields_by_name['fixed_shape_resizer'].message_type = _FIXEDSHAPERESIZER
-_IMAGERESIZER.fields_by_name['identity_resizer'].message_type = _IDENTITYRESIZER
-_IMAGERESIZER.fields_by_name['conditional_shape_resizer'].message_type = _CONDITIONALSHAPERESIZER
 _IMAGERESIZER.oneofs_by_name['image_resizer_oneof'].fields.append(
   _IMAGERESIZER.fields_by_name['keep_aspect_ratio_resizer'])
 _IMAGERESIZER.fields_by_name['keep_aspect_ratio_resizer'].containing_oneof = _IMAGERESIZER.oneofs_by_name['image_resizer_oneof']
 _IMAGERESIZER.oneofs_by_name['image_resizer_oneof'].fields.append(
   _IMAGERESIZER.fields_by_name['fixed_shape_resizer'])
 _IMAGERESIZER.fields_by_name['fixed_shape_resizer'].containing_oneof = _IMAGERESIZER.oneofs_by_name['image_resizer_oneof']
-_IMAGERESIZER.oneofs_by_name['image_resizer_oneof'].fields.append(
-  _IMAGERESIZER.fields_by_name['identity_resizer'])
-_IMAGERESIZER.fields_by_name['identity_resizer'].containing_oneof = _IMAGERESIZER.oneofs_by_name['image_resizer_oneof']
-_IMAGERESIZER.oneofs_by_name['image_resizer_oneof'].fields.append(
-  _IMAGERESIZER.fields_by_name['conditional_shape_resizer'])
-_IMAGERESIZER.fields_by_name['conditional_shape_resizer'].containing_oneof = _IMAGERESIZER.oneofs_by_name['image_resizer_oneof']
 _KEEPASPECTRATIORESIZER.fields_by_name['resize_method'].enum_type = _RESIZETYPE
 _FIXEDSHAPERESIZER.fields_by_name['resize_method'].enum_type = _RESIZETYPE
-_CONDITIONALSHAPERESIZER.fields_by_name['condition'].enum_type = _CONDITIONALSHAPERESIZER_RESIZECONDITION
-_CONDITIONALSHAPERESIZER.fields_by_name['resize_method'].enum_type = _RESIZETYPE
-_CONDITIONALSHAPERESIZER_RESIZECONDITION.containing_type = _CONDITIONALSHAPERESIZER
 DESCRIPTOR.message_types_by_name['ImageResizer'] = _IMAGERESIZER
-DESCRIPTOR.message_types_by_name['IdentityResizer'] = _IDENTITYRESIZER
 DESCRIPTOR.message_types_by_name['KeepAspectRatioResizer'] = _KEEPASPECTRATIORESIZER
 DESCRIPTOR.message_types_by_name['FixedShapeResizer'] = _FIXEDSHAPERESIZER
-DESCRIPTOR.message_types_by_name['ConditionalShapeResizer'] = _CONDITIONALSHAPERESIZER
 DESCRIPTOR.enum_types_by_name['ResizeType'] = _RESIZETYPE
 
 ImageResizer = _reflection.GeneratedProtocolMessageType('ImageResizer', (_message.Message,), dict(
@@ -371,13 +234,6 @@ ImageResizer = _reflection.GeneratedProtocolMessageType('ImageResizer', (_messag
   # @@protoc_insertion_point(class_scope:object_detection.protos.ImageResizer)
   ))
 _sym_db.RegisterMessage(ImageResizer)
-
-IdentityResizer = _reflection.GeneratedProtocolMessageType('IdentityResizer', (_message.Message,), dict(
-  DESCRIPTOR = _IDENTITYRESIZER,
-  __module__ = 'object_detection.protos.image_resizer_pb2'
-  # @@protoc_insertion_point(class_scope:object_detection.protos.IdentityResizer)
-  ))
-_sym_db.RegisterMessage(IdentityResizer)
 
 KeepAspectRatioResizer = _reflection.GeneratedProtocolMessageType('KeepAspectRatioResizer', (_message.Message,), dict(
   DESCRIPTOR = _KEEPASPECTRATIORESIZER,
@@ -392,13 +248,6 @@ FixedShapeResizer = _reflection.GeneratedProtocolMessageType('FixedShapeResizer'
   # @@protoc_insertion_point(class_scope:object_detection.protos.FixedShapeResizer)
   ))
 _sym_db.RegisterMessage(FixedShapeResizer)
-
-ConditionalShapeResizer = _reflection.GeneratedProtocolMessageType('ConditionalShapeResizer', (_message.Message,), dict(
-  DESCRIPTOR = _CONDITIONALSHAPERESIZER,
-  __module__ = 'object_detection.protos.image_resizer_pb2'
-  # @@protoc_insertion_point(class_scope:object_detection.protos.ConditionalShapeResizer)
-  ))
-_sym_db.RegisterMessage(ConditionalShapeResizer)
 
 
 # @@protoc_insertion_point(module_scope)

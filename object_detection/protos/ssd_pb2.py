@@ -18,8 +18,8 @@ from object_detection.protos import box_coder_pb2 as object__detection_dot_proto
 from object_detection.protos import box_predictor_pb2 as object__detection_dot_protos_dot_box__predictor__pb2
 from object_detection.protos import hyperparams_pb2 as object__detection_dot_protos_dot_hyperparams__pb2
 from object_detection.protos import image_resizer_pb2 as object__detection_dot_protos_dot_image__resizer__pb2
-from object_detection.protos import losses_pb2 as object__detection_dot_protos_dot_losses__pb2
 from object_detection.protos import matcher_pb2 as object__detection_dot_protos_dot_matcher__pb2
+from object_detection.protos import losses_pb2 as object__detection_dot_protos_dot_losses__pb2
 from object_detection.protos import post_processing_pb2 as object__detection_dot_protos_dot_post__processing__pb2
 from object_detection.protos import region_similarity_calculator_pb2 as object__detection_dot_protos_dot_region__similarity__calculator__pb2
 
@@ -28,106 +28,13 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='object_detection/protos/ssd.proto',
   package='object_detection.protos',
   syntax='proto2',
-  serialized_pb=_b('\n!object_detection/protos/ssd.proto\x12\x17object_detection.protos\x1a.object_detection/protos/anchor_generator.proto\x1a\'object_detection/protos/box_coder.proto\x1a+object_detection/protos/box_predictor.proto\x1a)object_detection/protos/hyperparams.proto\x1a+object_detection/protos/image_resizer.proto\x1a$object_detection/protos/losses.proto\x1a%object_detection/protos/matcher.proto\x1a-object_detection/protos/post_processing.proto\x1a:object_detection/protos/region_similarity_calculator.proto\"\xdc\x0b\n\x03Ssd\x12\x13\n\x0bnum_classes\x18\x01 \x01(\x05\x12<\n\rimage_resizer\x18\x02 \x01(\x0b\x32%.object_detection.protos.ImageResizer\x12G\n\x11\x66\x65\x61ture_extractor\x18\x03 \x01(\x0b\x32,.object_detection.protos.SsdFeatureExtractor\x12\x34\n\tbox_coder\x18\x04 \x01(\x0b\x32!.object_detection.protos.BoxCoder\x12\x31\n\x07matcher\x18\x05 \x01(\x0b\x32 .object_detection.protos.Matcher\x12R\n\x15similarity_calculator\x18\x06 \x01(\x0b\x32\x33.object_detection.protos.RegionSimilarityCalculator\x12)\n\x1a\x65ncode_background_as_zeros\x18\x0c \x01(\x08:\x05\x66\x61lse\x12 \n\x15negative_class_weight\x18\r \x01(\x02:\x01\x31\x12<\n\rbox_predictor\x18\x07 \x01(\x0b\x32%.object_detection.protos.BoxPredictor\x12\x42\n\x10\x61nchor_generator\x18\x08 \x01(\x0b\x32(.object_detection.protos.AnchorGenerator\x12@\n\x0fpost_processing\x18\t \x01(\x0b\x32\'.object_detection.protos.PostProcessing\x12+\n\x1dnormalize_loss_by_num_matches\x18\n \x01(\x08:\x04true\x12-\n\x1enormalize_loc_loss_by_codesize\x18\x0e \x01(\x08:\x05\x66\x61lse\x12+\n\x04loss\x18\x0b \x01(\x0b\x32\x1d.object_detection.protos.Loss\x12\x1f\n\x10\x66reeze_batchnorm\x18\x10 \x01(\x08:\x05\x66\x61lse\x12\'\n\x18inplace_batchnorm_update\x18\x0f \x01(\x08:\x05\x66\x61lse\x12\"\n\x14\x61\x64\x64_background_class\x18\x15 \x01(\x08:\x04true\x12(\n\x19\x65xplicit_background_class\x18\x18 \x01(\x08:\x05\x66\x61lse\x12)\n\x1ause_confidences_as_targets\x18\x16 \x01(\x08:\x05\x66\x61lse\x12\"\n\x17implicit_example_weight\x18\x17 \x01(\x02:\x01\x31\x12\x33\n$return_raw_detections_during_predict\x18\x1a \x01(\x08:\x05\x66\x61lse\x12?\n\x10mask_head_config\x18\x19 \x01(\x0b\x32%.object_detection.protos.Ssd.MaskHead\x1a\x84\x03\n\x08MaskHead\x12\x17\n\x0bmask_height\x18\x01 \x01(\x05:\x02\x31\x35\x12\x16\n\nmask_width\x18\x02 \x01(\x05:\x02\x31\x35\x12&\n\x18masks_are_class_agnostic\x18\x03 \x01(\x08:\x04true\x12\'\n\x1amask_prediction_conv_depth\x18\x04 \x01(\x05:\x03\x32\x35\x36\x12*\n\x1fmask_prediction_num_conv_layers\x18\x05 \x01(\x05:\x01\x32\x12+\n\x1c\x63onvolve_then_upsample_masks\x18\x06 \x01(\x08:\x05\x66\x61lse\x12\x1b\n\x10mask_loss_weight\x18\x07 \x01(\x02:\x01\x35\x12!\n\x15mask_loss_sample_size\x18\x08 \x01(\x05:\x02\x31\x36\x12>\n\x10\x63onv_hyperparams\x18\t \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12\x1d\n\x11initial_crop_size\x18\n \x01(\x05:\x02\x31\x35\"\xc3\x03\n\x13SsdFeatureExtractor\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x1b\n\x10\x64\x65pth_multiplier\x18\x02 \x01(\x02:\x01\x31\x12\x15\n\tmin_depth\x18\x03 \x01(\x05:\x02\x31\x36\x12>\n\x10\x63onv_hyperparams\x18\x04 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12:\n+override_base_feature_extractor_hyperparams\x18\t \x01(\x08:\x05\x66\x61lse\x12\x1a\n\x0fpad_to_multiple\x18\x05 \x01(\x05:\x01\x31\x12#\n\x14use_explicit_padding\x18\x07 \x01(\x08:\x05\x66\x61lse\x12\x1c\n\ruse_depthwise\x18\x08 \x01(\x08:\x05\x66\x61lse\x12<\n\x03\x66pn\x18\n \x01(\x0b\x32/.object_detection.protos.FeaturePyramidNetworks\x12\x34\n%replace_preprocessor_with_placeholder\x18\x0b \x01(\x08:\x05\x66\x61lse\x12\x15\n\nnum_layers\x18\x0c \x01(\x05:\x01\x36J\x04\x08\x06\x10\x07\"i\n\x16\x46\x65\x61turePyramidNetworks\x12\x14\n\tmin_level\x18\x01 \x01(\x05:\x01\x33\x12\x14\n\tmax_level\x18\x02 \x01(\x05:\x01\x37\x12#\n\x16\x61\x64\x64itional_layer_depth\x18\x03 \x01(\x05:\x03\x32\x35\x36')
+  serialized_pb=_b('\n!object_detection/protos/ssd.proto\x12\x17object_detection.protos\x1a.object_detection/protos/anchor_generator.proto\x1a\'object_detection/protos/box_coder.proto\x1a+object_detection/protos/box_predictor.proto\x1a)object_detection/protos/hyperparams.proto\x1a+object_detection/protos/image_resizer.proto\x1a%object_detection/protos/matcher.proto\x1a$object_detection/protos/losses.proto\x1a-object_detection/protos/post_processing.proto\x1a:object_detection/protos/region_similarity_calculator.proto\"\xc2\x06\n\x03Ssd\x12\x13\n\x0bnum_classes\x18\x01 \x01(\x05\x12<\n\rimage_resizer\x18\x02 \x01(\x0b\x32%.object_detection.protos.ImageResizer\x12G\n\x11\x66\x65\x61ture_extractor\x18\x03 \x01(\x0b\x32,.object_detection.protos.SsdFeatureExtractor\x12\x34\n\tbox_coder\x18\x04 \x01(\x0b\x32!.object_detection.protos.BoxCoder\x12\x31\n\x07matcher\x18\x05 \x01(\x0b\x32 .object_detection.protos.Matcher\x12R\n\x15similarity_calculator\x18\x06 \x01(\x0b\x32\x33.object_detection.protos.RegionSimilarityCalculator\x12)\n\x1a\x65ncode_background_as_zeros\x18\x0c \x01(\x08:\x05\x66\x61lse\x12 \n\x15negative_class_weight\x18\r \x01(\x02:\x01\x31\x12<\n\rbox_predictor\x18\x07 \x01(\x0b\x32%.object_detection.protos.BoxPredictor\x12\x42\n\x10\x61nchor_generator\x18\x08 \x01(\x0b\x32(.object_detection.protos.AnchorGenerator\x12@\n\x0fpost_processing\x18\t \x01(\x0b\x32\'.object_detection.protos.PostProcessing\x12+\n\x1dnormalize_loss_by_num_matches\x18\n \x01(\x08:\x04true\x12-\n\x1enormalize_loc_loss_by_codesize\x18\x0e \x01(\x08:\x05\x66\x61lse\x12+\n\x04loss\x18\x0b \x01(\x0b\x32\x1d.object_detection.protos.Loss\x12\x1f\n\x10\x66reeze_batchnorm\x18\x10 \x01(\x08:\x05\x66\x61lse\x12\'\n\x18inplace_batchnorm_update\x18\x0f \x01(\x08:\x05\x66\x61lse\"\xb8\x02\n\x13SsdFeatureExtractor\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x1b\n\x10\x64\x65pth_multiplier\x18\x02 \x01(\x02:\x01\x31\x12\x15\n\tmin_depth\x18\x03 \x01(\x05:\x02\x31\x36\x12>\n\x10\x63onv_hyperparams\x18\x04 \x01(\x0b\x32$.object_detection.protos.Hyperparams\x12:\n+override_base_feature_extractor_hyperparams\x18\t \x01(\x08:\x05\x66\x61lse\x12\x1a\n\x0fpad_to_multiple\x18\x05 \x01(\x05:\x01\x31\x12#\n\x14use_explicit_padding\x18\x07 \x01(\x08:\x05\x66\x61lse\x12\x1c\n\ruse_depthwise\x18\x08 \x01(\x08:\x05\x66\x61lseJ\x04\x08\x06\x10\x07')
   ,
-  dependencies=[object__detection_dot_protos_dot_anchor__generator__pb2.DESCRIPTOR,object__detection_dot_protos_dot_box__coder__pb2.DESCRIPTOR,object__detection_dot_protos_dot_box__predictor__pb2.DESCRIPTOR,object__detection_dot_protos_dot_hyperparams__pb2.DESCRIPTOR,object__detection_dot_protos_dot_image__resizer__pb2.DESCRIPTOR,object__detection_dot_protos_dot_losses__pb2.DESCRIPTOR,object__detection_dot_protos_dot_matcher__pb2.DESCRIPTOR,object__detection_dot_protos_dot_post__processing__pb2.DESCRIPTOR,object__detection_dot_protos_dot_region__similarity__calculator__pb2.DESCRIPTOR,])
+  dependencies=[object__detection_dot_protos_dot_anchor__generator__pb2.DESCRIPTOR,object__detection_dot_protos_dot_box__coder__pb2.DESCRIPTOR,object__detection_dot_protos_dot_box__predictor__pb2.DESCRIPTOR,object__detection_dot_protos_dot_hyperparams__pb2.DESCRIPTOR,object__detection_dot_protos_dot_image__resizer__pb2.DESCRIPTOR,object__detection_dot_protos_dot_matcher__pb2.DESCRIPTOR,object__detection_dot_protos_dot_losses__pb2.DESCRIPTOR,object__detection_dot_protos_dot_post__processing__pb2.DESCRIPTOR,object__detection_dot_protos_dot_region__similarity__calculator__pb2.DESCRIPTOR,])
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
-
-_SSD_MASKHEAD = _descriptor.Descriptor(
-  name='MaskHead',
-  full_name='object_detection.protos.Ssd.MaskHead',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mask_height', full_name='object_detection.protos.Ssd.MaskHead.mask_height', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=15,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='mask_width', full_name='object_detection.protos.Ssd.MaskHead.mask_width', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=15,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='masks_are_class_agnostic', full_name='object_detection.protos.Ssd.MaskHead.masks_are_class_agnostic', index=2,
-      number=3, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=True,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='mask_prediction_conv_depth', full_name='object_detection.protos.Ssd.MaskHead.mask_prediction_conv_depth', index=3,
-      number=4, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=256,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='mask_prediction_num_conv_layers', full_name='object_detection.protos.Ssd.MaskHead.mask_prediction_num_conv_layers', index=4,
-      number=5, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=2,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='convolve_then_upsample_masks', full_name='object_detection.protos.Ssd.MaskHead.convolve_then_upsample_masks', index=5,
-      number=6, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='mask_loss_weight', full_name='object_detection.protos.Ssd.MaskHead.mask_loss_weight', index=6,
-      number=7, type=2, cpp_type=6, label=1,
-      has_default_value=True, default_value=float(5),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='mask_loss_sample_size', full_name='object_detection.protos.Ssd.MaskHead.mask_loss_sample_size', index=7,
-      number=8, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=16,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='conv_hyperparams', full_name='object_detection.protos.Ssd.MaskHead.conv_hyperparams', index=8,
-      number=9, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='initial_crop_size', full_name='object_detection.protos.Ssd.MaskHead.initial_crop_size', index=9,
-      number=10, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=15,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=1581,
-  serialized_end=1969,
-)
 
 _SSD = _descriptor.Descriptor(
   name='Ssd',
@@ -248,52 +155,10 @@ _SSD = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    _descriptor.FieldDescriptor(
-      name='add_background_class', full_name='object_detection.protos.Ssd.add_background_class', index=16,
-      number=21, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=True,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='explicit_background_class', full_name='object_detection.protos.Ssd.explicit_background_class', index=17,
-      number=24, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='use_confidences_as_targets', full_name='object_detection.protos.Ssd.use_confidences_as_targets', index=18,
-      number=22, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='implicit_example_weight', full_name='object_detection.protos.Ssd.implicit_example_weight', index=19,
-      number=23, type=2, cpp_type=6, label=1,
-      has_default_value=True, default_value=float(1),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='return_raw_detections_during_predict', full_name='object_detection.protos.Ssd.return_raw_detections_during_predict', index=20,
-      number=26, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='mask_head_config', full_name='object_detection.protos.Ssd.mask_head_config', index=21,
-      number=25, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
-  nested_types=[_SSD_MASKHEAD, ],
+  nested_types=[],
   enum_types=[
   ],
   options=None,
@@ -303,7 +168,7 @@ _SSD = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=469,
-  serialized_end=1969,
+  serialized_end=1303,
 )
 
 
@@ -370,27 +235,6 @@ _SSDFEATUREEXTRACTOR = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    _descriptor.FieldDescriptor(
-      name='fpn', full_name='object_detection.protos.SsdFeatureExtractor.fpn', index=8,
-      number=10, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='replace_preprocessor_with_placeholder', full_name='object_detection.protos.SsdFeatureExtractor.replace_preprocessor_with_placeholder', index=9,
-      number=11, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='num_layers', full_name='object_detection.protos.SsdFeatureExtractor.num_layers', index=10,
-      number=12, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=6,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -403,57 +247,10 @@ _SSDFEATUREEXTRACTOR = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1972,
-  serialized_end=2423,
+  serialized_start=1306,
+  serialized_end=1618,
 )
 
-
-_FEATUREPYRAMIDNETWORKS = _descriptor.Descriptor(
-  name='FeaturePyramidNetworks',
-  full_name='object_detection.protos.FeaturePyramidNetworks',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='min_level', full_name='object_detection.protos.FeaturePyramidNetworks.min_level', index=0,
-      number=1, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=3,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='max_level', full_name='object_detection.protos.FeaturePyramidNetworks.max_level', index=1,
-      number=2, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=7,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='additional_layer_depth', full_name='object_detection.protos.FeaturePyramidNetworks.additional_layer_depth', index=2,
-      number=3, type=5, cpp_type=1, label=1,
-      has_default_value=True, default_value=256,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=2425,
-  serialized_end=2530,
-)
-
-_SSD_MASKHEAD.fields_by_name['conv_hyperparams'].message_type = object__detection_dot_protos_dot_hyperparams__pb2._HYPERPARAMS
-_SSD_MASKHEAD.containing_type = _SSD
 _SSD.fields_by_name['image_resizer'].message_type = object__detection_dot_protos_dot_image__resizer__pb2._IMAGERESIZER
 _SSD.fields_by_name['feature_extractor'].message_type = _SSDFEATUREEXTRACTOR
 _SSD.fields_by_name['box_coder'].message_type = object__detection_dot_protos_dot_box__coder__pb2._BOXCODER
@@ -463,27 +260,16 @@ _SSD.fields_by_name['box_predictor'].message_type = object__detection_dot_protos
 _SSD.fields_by_name['anchor_generator'].message_type = object__detection_dot_protos_dot_anchor__generator__pb2._ANCHORGENERATOR
 _SSD.fields_by_name['post_processing'].message_type = object__detection_dot_protos_dot_post__processing__pb2._POSTPROCESSING
 _SSD.fields_by_name['loss'].message_type = object__detection_dot_protos_dot_losses__pb2._LOSS
-_SSD.fields_by_name['mask_head_config'].message_type = _SSD_MASKHEAD
 _SSDFEATUREEXTRACTOR.fields_by_name['conv_hyperparams'].message_type = object__detection_dot_protos_dot_hyperparams__pb2._HYPERPARAMS
-_SSDFEATUREEXTRACTOR.fields_by_name['fpn'].message_type = _FEATUREPYRAMIDNETWORKS
 DESCRIPTOR.message_types_by_name['Ssd'] = _SSD
 DESCRIPTOR.message_types_by_name['SsdFeatureExtractor'] = _SSDFEATUREEXTRACTOR
-DESCRIPTOR.message_types_by_name['FeaturePyramidNetworks'] = _FEATUREPYRAMIDNETWORKS
 
 Ssd = _reflection.GeneratedProtocolMessageType('Ssd', (_message.Message,), dict(
-
-  MaskHead = _reflection.GeneratedProtocolMessageType('MaskHead', (_message.Message,), dict(
-    DESCRIPTOR = _SSD_MASKHEAD,
-    __module__ = 'object_detection.protos.ssd_pb2'
-    # @@protoc_insertion_point(class_scope:object_detection.protos.Ssd.MaskHead)
-    ))
-  ,
   DESCRIPTOR = _SSD,
   __module__ = 'object_detection.protos.ssd_pb2'
   # @@protoc_insertion_point(class_scope:object_detection.protos.Ssd)
   ))
 _sym_db.RegisterMessage(Ssd)
-_sym_db.RegisterMessage(Ssd.MaskHead)
 
 SsdFeatureExtractor = _reflection.GeneratedProtocolMessageType('SsdFeatureExtractor', (_message.Message,), dict(
   DESCRIPTOR = _SSDFEATUREEXTRACTOR,
@@ -491,13 +277,6 @@ SsdFeatureExtractor = _reflection.GeneratedProtocolMessageType('SsdFeatureExtrac
   # @@protoc_insertion_point(class_scope:object_detection.protos.SsdFeatureExtractor)
   ))
 _sym_db.RegisterMessage(SsdFeatureExtractor)
-
-FeaturePyramidNetworks = _reflection.GeneratedProtocolMessageType('FeaturePyramidNetworks', (_message.Message,), dict(
-  DESCRIPTOR = _FEATUREPYRAMIDNETWORKS,
-  __module__ = 'object_detection.protos.ssd_pb2'
-  # @@protoc_insertion_point(class_scope:object_detection.protos.FeaturePyramidNetworks)
-  ))
-_sym_db.RegisterMessage(FeaturePyramidNetworks)
 
 
 # @@protoc_insertion_point(module_scope)

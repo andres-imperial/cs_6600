@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='object_detection/protos/graph_rewriter.proto',
   package='object_detection.protos',
   syntax='proto2',
-  serialized_pb=_b('\n,object_detection/protos/graph_rewriter.proto\x12\x17object_detection.protos\"W\n\rGraphRewriter\x12;\n\x0cquantization\x18\x01 \x01(\x0b\x32%.object_detection.protos.Quantization*\t\x08\xe8\x07\x10\x80\x80\x80\x80\x02\"s\n\x0cQuantization\x12\x15\n\x05\x64\x65lay\x18\x01 \x01(\x05:\x06\x35\x30\x30\x30\x30\x30\x12\x16\n\x0bweight_bits\x18\x02 \x01(\x05:\x01\x38\x12\x1a\n\x0f\x61\x63tivation_bits\x18\x03 \x01(\x05:\x01\x38\x12\x18\n\tsymmetric\x18\x04 \x01(\x08:\x05\x66\x61lse')
+  serialized_pb=_b('\n,object_detection/protos/graph_rewriter.proto\x12\x17object_detection.protos\"L\n\rGraphRewriter\x12;\n\x0cquantization\x18\x01 \x01(\x0b\x32%.object_detection.protos.Quantization\"Y\n\x0cQuantization\x12\x15\n\x05\x64\x65lay\x18\x01 \x01(\x05:\x06\x35\x30\x30\x30\x30\x30\x12\x16\n\x0bweight_bits\x18\x02 \x01(\x05:\x01\x38\x12\x1a\n\x0f\x61\x63tivation_bits\x18\x03 \x01(\x05:\x01\x38')
 )
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -47,13 +47,13 @@ _GRAPHREWRITER = _descriptor.Descriptor(
   enum_types=[
   ],
   options=None,
-  is_extendable=True,
+  is_extendable=False,
   syntax='proto2',
-  extension_ranges=[(1000, 536870912), ],
+  extension_ranges=[],
   oneofs=[
   ],
   serialized_start=73,
-  serialized_end=160,
+  serialized_end=149,
 )
 
 
@@ -85,13 +85,6 @@ _QUANTIZATION = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
-    _descriptor.FieldDescriptor(
-      name='symmetric', full_name='object_detection.protos.Quantization.symmetric', index=3,
-      number=4, type=8, cpp_type=7, label=1,
-      has_default_value=True, default_value=False,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
   ],
   extensions=[
   ],
@@ -104,8 +97,8 @@ _QUANTIZATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=162,
-  serialized_end=277,
+  serialized_start=151,
+  serialized_end=240,
 )
 
 _GRAPHREWRITER.fields_by_name['quantization'].message_type = _QUANTIZATION
