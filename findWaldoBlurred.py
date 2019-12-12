@@ -5,25 +5,12 @@ import tensorflow as tf
 import matplotlib
 from PIL import Image
 import matplotlib.patches as patches
+from object_detection.utils import label_map_util
+from object_detection.utils import visualization_utils as vis_util
 import argparse
 
+
 model_path = './trained_model_blur/frozen_inference_graph.pb'
-
-def draw_box(box, image_np):
-    #expand the box by 50%
-    box += np.array([-(box[2] - box[0])/2, -(box[3] - box[1])/2, (box[2] - box[0])/2, (box[3] - box[1])/2])
-
-    fig = plt.figure()
-    ax = plt.Axes(fig, [0., 0., 1., 1.])
-    fig.add_axes(ax)
-
-    #draw blurred boxes around box
-    ax.add_patch(patches.Rectangle((0,0),box[1]*image_np.shape[1], image_np.shape[0],linewidth=0,edgecolor='none',facecolor='w',alpha=0.8))
-    ax.add_patch(patches.Rectangle((box[3]*image_np.shape[1],0),image_np.shape[1], image_np.shape[0],linewidth=0,edgecolor='none',facecolor='w',alpha=0.8))
-    ax.add_patch(patches.Rectangle((box[1]*image_np.shape[1],0),(box[3]-box[1])*image_np.shape[1], box[0]*image_np.shape[0],linewidth=0,edgecolor='none',facecolor='w',alpha=0.8))
-    ax.add_patch(patches.Rectangle((box[1]*image_np.shape[1],box[2]*image_np.shape[0]),(box[3]-box[1])*image_np.shape[1], image_np.shape[0],linewidth=0,edgecolor='none',facecolor='w',alpha=0.8))
-
-    return fig, ax
 
 detection_graph = tf.Graph()
 with detection_graph.as_default():
@@ -38,6 +25,9 @@ def load_image_into_numpy_array(image):
   return np.array(image.getdata()).reshape(
       (im_height, im_width, 3)).astype(np.uint8)
 
+label_map = label_map_util.load_labelmap('./trained_model_blur/labels.txt')
+categories = label_map_util.convert_label_map_to_categories(label_map, max_num_classes=1, use_display_name=True)
+category_index = label_map_util.create_category_index(categories)
 
 with detection_graph.as_default():
   with tf.Session(graph=detection_graph) as sess:
@@ -58,8 +48,15 @@ with detection_graph.as_default():
     if scores[0][0] < 0.1:
         sys.exit('Wally not found :(')
 
-    print('Wally found' + str(scores[0][0]))
-    fig, ax = draw_box(boxes[0][0], image_np)
-
-    ax.imshow(image_np)
+    print('Wally found')
+    vis_util.visualize_boxes_and_labels_on_image_array(
+        image_np,
+        np.squeeze(boxes),
+        np.squeeze(classes).astype(np.int32),
+        np.squeeze(scores),
+        category_index,
+        use_normalized_coordinates=True,
+        line_thickness=8)
+    plt.figure(figsize=(12, 8))
+    plt.imshow(image_np)
     plt.show()
